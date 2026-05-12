@@ -33,7 +33,7 @@ function App() {
   });
 
   const fetchPosts = () => {
-    axios.get("http://localhost:5000/api/data/posts")
+    axios.get("https://fullstackbackend.muhamedatia.deno.net/api/data/posts")
       .then(res => setContent(res.data.posts))
       .catch(err => console.error("Failed to fetch posts:", err));
   };
@@ -43,7 +43,7 @@ function App() {
 
   const handleRegister = (e) => {
     e.preventDefault();
-    axios.post("http://localhost:5000/api/auth/signup", registerData)
+    axios.post("https://fullstackbackend.muhamedatia.deno.net/api/auth/signup", registerData)
       .then(res => {
         console.log("Registered:", res.data);
         localStorage.setItem("token", res.data.token);
@@ -72,7 +72,7 @@ function App() {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    axios.post("http://localhost:5000/api/auth/login", loginData)
+    axios.post("https://fullstackbackend.muhamedatia.deno.net/api/auth/login", loginData)
       .then(res => {
         console.log("Logged in:", res.data);
         localStorage.setItem("token", res.data.token);
@@ -99,7 +99,7 @@ function App() {
 
   const handleDeletePost = (id)=>{
     const token = localStorage.getItem("token");
-    axios.delete(`http://localhost:5000/api/data/posts/${id}`,{headers: {Authorization: `Bearer ${token}`}})
+    axios.delete(`https://fullstackbackend.muhamedatia.deno.net/api/data/posts/${id}`,{headers: {Authorization: `Bearer ${token}`}})
     .then(res => {
       console.log("Deleted:", res.data);
       setContent(prev => prev.filter(post => post.id !== id));
@@ -112,7 +112,7 @@ function App() {
   const handleAddPost = (e) => {
     e.preventDefault();
     const token = localStorage.getItem("token");
-    axios.post(`http://localhost:5000/api/data/posts`,post,{headers: {Authorization: `Bearer ${token}`}})
+    axios.post(`https://fullstackbackend.muhamedatia.deno.net/api/data/posts`,post,{headers: {Authorization: `Bearer ${token}`}})
     .then(res => setContent(prev => [...prev, res.data.post]))
     .catch(error => console.log(error));
   };

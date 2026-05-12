@@ -10,14 +10,14 @@ export default function UpdatePost(props) {
   const { id } = useParams();
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/api/data/posts/${id}`)
+    axios.get(`https://fullstackbackend.muhamedatia.deno.net/api/data/posts/${id}`)
       .then(res => setPost(res.data.post))
       .catch(err => console.error("Failed to fetch posts:", err));
   }, []);
 
   const handleUpdatePost = (e) => {
     e.preventDefault();
-    const updatedPostapi = axios.patch(`http://localhost:5000/api/data/posts/${id}`, Post, {
+    const updatedPostapi = axios.patch(`https://fullstackbackend.muhamedatia.deno.net/api/data/posts/${id}`, Post, {
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
     })
       .then(res => {
